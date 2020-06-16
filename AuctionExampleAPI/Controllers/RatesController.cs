@@ -28,7 +28,7 @@ namespace AuctionExampleAPI.Controllers
             return await _context.Rate.ToListAsync();
         }
 
-        // GET: api/Rates/5
+        // GET: api/rates/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Rate>> GetRate(int id)
         {
@@ -42,7 +42,7 @@ namespace AuctionExampleAPI.Controllers
             return rate;
         }
 
-        // PUT: api/Rates/5
+        // PUT: api/rates/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRate(int id, Rate rate)
         {
@@ -72,17 +72,17 @@ namespace AuctionExampleAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Rates
+        // POST: api/rates
         [HttpPost]
         public async Task<ActionResult<Rate>> PostRate(Rate rate)
         {
-            _context.Rate.Add(rate);
+            await _context.Rate.AddAsync(rate);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRate", new { id = rate.RateId }, rate);
+            return CreatedAtAction(nameof(GetRate), new { id = rate.RateId }, rate);
         }
 
-        // DELETE: api/Rates/5
+        // DELETE: api/rates/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Rate>> DeleteRate(int id)
         {

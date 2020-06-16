@@ -21,14 +21,14 @@ namespace AuctionExampleAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Items
+        // GET: api/items
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItem()
         {
             return await _context.Item.ToListAsync();
         }
 
-        // GET: api/Items/5
+        // GET: api/items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
@@ -42,7 +42,7 @@ namespace AuctionExampleAPI.Controllers
             return item;
         }
 
-        // PUT: api/Items/5
+        // PUT: api/items/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem(int id, Item item)
         {
@@ -72,17 +72,17 @@ namespace AuctionExampleAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Items
+        // POST: api/items
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
             await _context.Item.AddAsync(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
+            return CreatedAtAction(nameof(GetItem), new { id = item.ItemId }, item);
         }
 
-        // DELETE: api/Items/5
+        // DELETE: api/items/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
