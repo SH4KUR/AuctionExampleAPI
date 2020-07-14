@@ -6,6 +6,7 @@ using AuctionExampleAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,6 +47,11 @@ namespace AuctionExampleAPI
                 .AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddSpaStaticFiles(config =>
+            {
+                config.RootPath = "ClientApp/dist";
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuctionExample API", Version = "v1" });
@@ -59,9 +65,30 @@ namespace AuctionExampleAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
-            app.UseDefaultFiles();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}"
+                );
+            });
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -69,12 +96,15 @@ namespace AuctionExampleAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuctionExample API V1");
             });
 
-            app.UseHttpsRedirection();
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
+            app.UseSpa(spa =>
             {
-                endpoints.MapControllers();
+                spa.Options.SourcePath = "ClientApp";
+                spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }
