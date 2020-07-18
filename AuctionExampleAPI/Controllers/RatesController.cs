@@ -28,6 +28,13 @@ namespace AuctionExampleAPI.Controllers
             return await _context.Rate.ToListAsync();
         }
 
+        // GET: api/Items/4/Rates
+        [HttpGet("item/{id:int}")]
+        public async Task<ActionResult<IEnumerable<Rate>>> GetRatesByItem(int id)
+        {
+            return await _context.Rate.Where(r => r.ItemId == id).Distinct().ToListAsync();
+        }
+
         // GET: api/rates/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Rate>> GetRate(int id)

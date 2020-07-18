@@ -8,8 +8,11 @@ import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from "@angular/material/card";
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+
+import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     HttpClientModule,
 
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
