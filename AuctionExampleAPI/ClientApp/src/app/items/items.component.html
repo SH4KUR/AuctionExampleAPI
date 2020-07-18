@@ -1,5 +1,15 @@
 <h4>Items</h4>
 
-<p *ngFor="let item of items">
-    {{ item.name }}
-</p>
+<mat-card *ngFor="let item of items" style="max-width: 400px;">
+    <mat-card-header>
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item.startPrice }} - {{ item.currentPrice }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ item.startTime | date:'MM/dd/yyyy HH:mm:ss' }} - {{ item.endTime | date:'MM/dd/yyyy HH:mm:ss' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{ item.status }}</mat-card-content>
+    <mat-card-actions>
+        <button>Add...</button>
+        <a routerLink="/detail/{{item.itemId}}">Detail</a>
+    </mat-card-actions>
+    <mat-card-footer>{{ item.itemId }}</mat-card-footer>
+</mat-card>

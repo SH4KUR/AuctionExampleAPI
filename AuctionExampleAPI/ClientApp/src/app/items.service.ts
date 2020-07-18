@@ -27,6 +27,14 @@ export class ItemsService {
     );
   }
 
+  getItem(id: number) : Observable<Item> {
+    return this.http.get<Item>(`${this.itemsUrl}/${ id }`)
+    .pipe(
+      tap(_ => console.log(`Fetched Item, ID: ${ id }`)),
+      catchError(this.handleError<Item>(`getItem, id=${ id }`))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error)

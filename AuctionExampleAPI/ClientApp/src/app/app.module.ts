@@ -7,16 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from "@angular/material/card";
+import { ItemDetailComponent } from './item-detail/item-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ItemsComponent
+    ItemsComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import { ItemsService } from './../items.service';
 import { Component, OnInit } from '@angular/core';
+
+import { ItemsService } from './../items.service';
 import { Item } from "./../item";
 
 @Component({
