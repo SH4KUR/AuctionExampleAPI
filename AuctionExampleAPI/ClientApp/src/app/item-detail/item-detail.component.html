@@ -2,6 +2,6 @@
 
 <ul>
     <li *ngFor="let rate of rates">
-        [{{ rate.rateTime | date:'MM/dd/yyyy HH:mm:ss' }}] {{ rate.userName }} - {{ rate.price }}
+        {{ rate.rateId }}: [{{ rate.rateTime | date:'MM/dd/yyyy HH:mm:ss' }}] {{ rate.userName }} - {{ rate.price }}
     </li>
 </ul>

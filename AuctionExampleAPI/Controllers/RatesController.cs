@@ -32,7 +32,7 @@ namespace AuctionExampleAPI.Controllers
         [HttpGet("item/{id:int}")]
         public async Task<ActionResult<IEnumerable<Rate>>> GetRatesByItem(int id)
         {
-            return await _context.Rate.Where(r => r.ItemId == id).Distinct().ToListAsync();
+            return await _context.Rate.Where(r => r.ItemId == id).OrderByDescending(r => r.RateTime).ToListAsync();
         }
 
         // GET: api/rates/5

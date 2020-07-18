@@ -140,7 +140,7 @@ namespace AuctionExampleAPI.Data
                 new Rate()
                 {
                     RateId = 7,
-                    ItemId = 4,
+                    ItemId = 5,
                     UserName = "John",
                     Price = 1350,
                     RateTime = new DateTime(2020, 10, 14, 12, 12, 55)
