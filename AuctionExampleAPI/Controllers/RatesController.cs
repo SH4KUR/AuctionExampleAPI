@@ -21,14 +21,14 @@ namespace AuctionExampleAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Rates
+        // GET: api/rates
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rate>>> GetRate()
         {
             return await _context.Rate.ToListAsync();
         }
 
-        // GET: api/Items/4/Rates
+        // GET: api/rates/item/5/
         [HttpGet("item/{id:int}")]
         public async Task<ActionResult<IEnumerable<Rate>>> GetRatesByItem(int id)
         {

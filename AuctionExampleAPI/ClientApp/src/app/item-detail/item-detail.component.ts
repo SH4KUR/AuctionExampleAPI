@@ -18,6 +18,9 @@ export class ItemDetailComponent implements OnInit {
   item: Item;
   rates: Rate[] = [];
 
+  ratePrice: number;
+  userName: string;
+
   constructor(
     private itemsService: ItemsService,
     private ratesService: RatesService, 
@@ -42,8 +45,17 @@ export class ItemDetailComponent implements OnInit {
       .subscribe(rates => this.rates = rates);
   }
 
+  getUserName(): void {
+    this.userName = (document.getElementById('userName') as HTMLInputElement).value;
+  }
+
   goBack(): void {
     this.location.back();
+  }
+
+  sendRate(): void {
+    this.getUserName();
+    console.log(this.userName + ' - ' + this.ratePrice);
   }
 
 }

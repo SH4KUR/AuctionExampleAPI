@@ -7,12 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 
-import { MatCardModule } from "@angular/material/card";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { AngularMaterialModule } from "./angular-material.module";
 
 @NgModule({
   declarations: [
@@ -26,10 +23,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     FormsModule,
     HttpClientModule,
 
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
