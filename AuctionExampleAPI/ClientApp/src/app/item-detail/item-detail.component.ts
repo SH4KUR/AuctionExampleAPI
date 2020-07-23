@@ -68,4 +68,9 @@ export class ItemDetailComponent implements OnInit {
       .subscribe(rate => this.rates.push(rate));
   }
 
+  refresh(): void {
+    this.getItem();
+    this.getRates();
+  }
+
 }

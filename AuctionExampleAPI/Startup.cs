@@ -43,6 +43,8 @@ namespace AuctionExampleAPI
             //services.AddDbContext<AuctionExampleContext>(c =>
             //    c.UseNpgsql(Configuration.GetConnectionString("AuctionExampleConnection")));
 
+            services.AddSignalR();
+
             services
                 .AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

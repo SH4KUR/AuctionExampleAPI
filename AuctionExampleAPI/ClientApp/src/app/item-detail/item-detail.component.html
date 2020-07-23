@@ -1,5 +1,7 @@
 <h3>{{ item.name }}</h3>
 
+<button mat-raised-button (click)="refresh();">Refresh</button><br/>
+
 <mat-form-field>
   <mat-label>Input Rate</mat-label>
   <input matInput type="number" value="item.currentPrice" [(ngModel)]="ratePrice">
