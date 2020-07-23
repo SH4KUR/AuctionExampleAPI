@@ -55,7 +55,17 @@ export class ItemDetailComponent implements OnInit {
 
   sendRate(): void {
     this.getUserName();
-    console.log(this.userName + ' - ' + this.ratePrice);
+    
+    let newRate: Rate = {
+      rateId: 0,
+      itemId: this.item.itemId,
+      price: this.ratePrice,
+      rateTime: new Date(Date.now()),
+      userName: this.userName
+    };
+
+    this.ratesService.addRate(newRate)
+      .subscribe(rate => this.rates.push(rate));
   }
 
 }
