@@ -8,6 +8,7 @@
     </mat-card-header>
     <mat-card-content>{{ item.status }}</mat-card-content>
     <mat-card-actions>
+        <button mat-raised-button color="basic" (click)="refresh();" style="float: right;">Refresh</button>
         <button mat-raised-button color="primary" routerLink="/detail/{{item.itemId}}" style="float: right;">Detail</button>
     </mat-card-actions>
     <mat-card-footer>{{ item.itemId }}</mat-card-footer>

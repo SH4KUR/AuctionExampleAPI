@@ -23,4 +23,7 @@ export class ItemsComponent implements OnInit {
       .subscribe(items => this.items = items)
   }
 
+  refresh(): void {
+    this.getItems();
+  }
 }

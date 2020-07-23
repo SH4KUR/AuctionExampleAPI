@@ -84,6 +84,12 @@ namespace AuctionExampleAPI.Controllers
         public async Task<ActionResult<Rate>> PostRate(Rate rate)
         {
             await _context.Rate.AddAsync(rate);
+
+            // TODO: Add check price
+            var item = await _context.Item.FindAsync(rate.ItemId); 
+            item.CurrentPrice = rate.Price;
+            _context.Entry(item).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetRate), new { id = rate.RateId }, rate);
