@@ -42,7 +42,7 @@ export class ItemDetailComponent implements OnInit {
   getRates(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.ratesService.getRatesByItem(id)
-      .subscribe(rates => this.rates = rates);
+      .subscribe(rates => this.rates = rates.sort(this.compare));
   }
 
   getUserName(): void {
@@ -65,12 +65,20 @@ export class ItemDetailComponent implements OnInit {
     };
 
     this.ratesService.addRate(newRate)
-      .subscribe(rate => this.rates.push(rate));
+      .subscribe(rate => console.log(`Added Rate ID:${ rate.rateId }`));
+
+    this.refresh();
   }
 
   refresh(): void {
     this.getItem();
     this.getRates();
+  }
+
+  compare(r1: Rate, r2: Rate) {
+    if(r1.rateId < r2.rateId) return 1;
+    if(r1.rateId > r2.rateId) return -1;
+    return 0;
   }
 
 }
