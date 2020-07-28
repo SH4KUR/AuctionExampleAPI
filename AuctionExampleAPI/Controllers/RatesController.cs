@@ -21,21 +21,21 @@ namespace AuctionExampleAPI.Controllers
             _context = context;
         }
 
-        // GET: api/rates
+        // GET: api/Rates
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rate>>> GetRate()
         {
             return await _context.Rate.ToListAsync();
         }
 
-        // GET: api/rates/item/5/
-        [HttpGet("item/{id:int}")]
+        // GET: api/Rates/Item/5/
+        [HttpGet("Item/{id:int}")]
         public async Task<ActionResult<IEnumerable<Rate>>> GetRatesByItem(int id)
         {
             return await _context.Rate.Where(r => r.ItemId == id).OrderByDescending(r => r.RateId).ToListAsync();
         }
 
-        // GET: api/rates/5
+        // GET: api/Rates/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Rate>> GetRate(int id)
         {
@@ -49,7 +49,7 @@ namespace AuctionExampleAPI.Controllers
             return rate;
         }
 
-        // PUT: api/rates/5
+        // PUT: api/Rates/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRate(int id, Rate rate)
         {
@@ -79,7 +79,7 @@ namespace AuctionExampleAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/rates
+        // POST: api/Rates
         [HttpPost]
         public async Task<ActionResult<Rate>> PostRate(Rate rate)
         {
@@ -95,7 +95,7 @@ namespace AuctionExampleAPI.Controllers
             return CreatedAtAction(nameof(GetRate), new { id = rate.RateId }, rate);
         }
 
-        // DELETE: api/rates/5
+        // DELETE: api/Rates/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Rate>> DeleteRate(int id)
         {
