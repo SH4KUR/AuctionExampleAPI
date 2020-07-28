@@ -1,3 +1,4 @@
+import { SignalRService } from './../signal-r.service';
 import { RatesService } from './../rates.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -25,10 +26,13 @@ export class ItemDetailComponent implements OnInit {
     private itemsService: ItemsService,
     private ratesService: RatesService, 
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private signalRService: SignalRService
     ) { }
 
   ngOnInit(): void {
+    this.signalRService.refreshListener(() => { this.refresh(); });
+    
     this.getItem();
     this.getRates();
   }
@@ -66,11 +70,14 @@ export class ItemDetailComponent implements OnInit {
 
     this.ratesService.addRate(newRate)
       .subscribe(rate => console.log(`Added Rate ID:${ rate.rateId }`));
-
-    this.refresh();
+    
+    this.signalRService.refreshInvoke(this.item.itemId);
+    
+    // this.refresh();
   }
 
   refresh(): void {
+    console.log('refresh');
     this.getItem();
     this.getRates();
   }

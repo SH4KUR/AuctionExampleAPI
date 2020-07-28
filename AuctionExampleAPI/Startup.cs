@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuctionExampleAPI.Data;
+using AuctionExampleAPI.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -101,6 +102,7 @@ namespace AuctionExampleAPI
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}"
                 );
+                endpoints.MapHub<RefreshHub>("/refresh");
             });
 
             app.UseSwagger();

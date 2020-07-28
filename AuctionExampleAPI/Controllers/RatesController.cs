@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AuctionExampleAPI.Data;
+using AuctionExampleAPI.Hubs;
 using AuctionExampleAPI.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace AuctionExampleAPI.Controllers
 {
