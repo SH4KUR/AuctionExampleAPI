@@ -30,10 +30,6 @@ export class SignalRService {
   }
 
   public refreshListener(func: Function): void {
-    this.hubConnection.on('Refresh', function (id: number) { func(); });
-  }
-
-  public refreshInvoke(idItem: number) {
-    this.hubConnection.invoke('Refresh', idItem);
+    this.hubConnection.on('RefreshItem', function (idItem: number) { func(); });
   }
 }

@@ -17,10 +17,12 @@ namespace AuctionExampleAPI.Controllers
     public class RatesController : ControllerBase
     {
         private readonly AuctionExampleContext _context;
+        private readonly IHubContext<RefreshHub, IReferenceHub> _hubContext;
 
-        public RatesController(AuctionExampleContext context)
+        public RatesController(AuctionExampleContext context, IHubContext<RefreshHub, IReferenceHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // GET: api/Rates
@@ -93,6 +95,8 @@ namespace AuctionExampleAPI.Controllers
             _context.Entry(item).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
+
+            await _hubContext.Clients.All.RefreshItem(item.ItemId);
 
             return CreatedAtAction(nameof(GetRate), new { id = rate.RateId }, rate);
         }

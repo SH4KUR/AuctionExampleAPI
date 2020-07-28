@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace AuctionExampleAPI.Hubs
 {
-    public class RefreshHub : Hub
+    public class RefreshHub : Hub<IReferenceHub>
     {
-        public void Refresh(int idItem)
+        public async Task Refresh(int idItem)
         {
-            Clients.All.SendAsync("refresh", idItem);
+            await Clients.All.RefreshItem(idItem);
         }
     }
 }
